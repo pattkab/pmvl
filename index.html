@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Potentia Motus Ventures Limited (PMVL) — practical, fraud-free, mobile-first apps for Uganda." />
+  <title>Potentia Motus Ventures Ltd (PMVL)</title>
+
+  <!--
+    PMVL GitHub Pages single-file site
+    - Drop this file in a repo (e.g., pattkab/pmvl) as index.html
+    - Or place into a /docs folder if you prefer
+  -->
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --r: 20px;
+      --max: 1120px;
+      --accent1: #00C59B;
+      --accent2: #138A91;
+      --accent3: #7C4DFF;
+      --warn: #ffd166;
+      --ok: #7CFF6B;
+      --danger: #ff5c7a;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(0,197,155,.22), transparent 60%),
+        radial-gradient(1000px 700px at 85% 15%, rgba(124,77,255,.20), transparent 58%),
+        radial-gradient(1000px 800px at 55% 90%, rgba(19,138,145,.18), transparent 60%),
+        linear-gradient(180deg, #071022, #060a14 50%, #050812);
+      overflow-x:hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: none; }
+
+    .container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(6,10,20,.55);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(0,197,155,.95), rgba(19,138,145,.95));
+      box-shadow: 0 10px 30px rgba(0,197,155,.18);
+      border: 1px solid rgba(255,255,255,.16);
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+    .brand h1{
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing:.2px;
+    }
+    .brand .sub{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .navlinks a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: .18s ease;
+    }
+    .navlinks a:hover{
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.05);
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      transition: .18s ease;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 10px 30px rgba(0,0,0,.20);
+    }
+    .btn.primary{
+      border-color: rgba(0,197,155,.40);
+      background: linear-gradient(135deg, rgba(0,197,155,.95), rgba(19,138,145,.92));
+      box-shadow: 0 14px 40px rgba(0,197,155,.14);
+    }
+    .btn.primary:hover{
+      box-shadow: 0 20px 60px rgba(0,197,155,.22);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 56px 0 24px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .pill{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 12px;
+      width: fit-content;
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent1);
+      box-shadow: 0 0 0 4px rgba(0,197,155,.18);
+    }
+
+    .hero h2{
+      font-size: clamp(28px, 4.2vw, 44px);
+      margin: 14px 0 10px;
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 56ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .stats{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 520px){
+      .stats{ grid-template-columns: 1fr; }
+    }
+
+    .stat{
+      padding: 14px;
+      border-radius: var(--r);
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+    }
+    .stat b{ display:block; font-size: 18px; letter-spacing: -0.2px; }
+    .stat span{ display:block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+
+    /* Featured panel */
+    .panel{
+      border-radius: calc(var(--r) + 6px);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .panel .top{
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .panel .top .title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .badge{
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+    }
+
+    .panel .body{
+      padding: 16px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .feature{
+      display:flex;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(70% 70% at 30% 30%, rgba(255,255,255,.20), rgba(255,255,255,.04)),
+        linear-gradient(135deg, rgba(0,197,155,.50), rgba(124,77,255,.28));
+    }
+    .feature h3{ margin: 0; font-size: 14px; }
+    .feature p{ margin: 4px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+
+    /* Apps */
+    section{ padding: 26px 0; }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .section-head h2{ margin:0; font-size: 18px; letter-spacing: -0.2px; }
+    .section-head p{ margin:0; color: var(--muted); font-size: 13px; }
+
+    .toolbar{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .search{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 10px 12px;
+      min-width: 260px;
+    }
+    .search input{
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .chips{ display:flex; gap: 8px; flex-wrap:wrap; }
+    .chip{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      user-select:none;
+      transition: .18s ease;
+    }
+    .chip:hover{ color: var(--text); background: rgba(255,255,255,.06); }
+    .chip.active{
+      color: #061018;
+      background: rgba(0,197,155,.95);
+      border-color: rgba(0,197,155,.55);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px){
+      .grid{ grid-template-columns: 1fr; }
+      .search{ min-width: 100%; }
+    }
+
+    .card{
+      padding: 16px;
+      border-radius: calc(var(--r) + 2px);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 50px rgba(0,0,0,.18);
+      transition: .18s ease;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 220px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.20); }
+
+    .card .row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+
+    .appmark{
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:.2px;
+      background:
+        radial-gradient(70% 70% at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,.04)),
+        linear-gradient(135deg, rgba(124,77,255,.30), rgba(0,197,155,.45));
+    }
+
+    .card h3{ margin:0; font-size: 15px; letter-spacing: -0.2px; }
+    .card p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    .meta{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+    .tag{
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .links{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .linkbtn{
+      font-size: 12px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      transition: .18s ease;
+    }
+    .linkbtn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.20); }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 840px){
+      .contact{ grid-template-columns: 1fr; }
+    }
+
+    .contact-card{
+      padding: 16px;
+      border-radius: calc(var(--r) + 2px);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+    }
+    .contact-card h3{ margin:0 0 6px; font-size: 15px; }
+    .contact-card p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .contact-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+
+    footer{
+      padding: 26px 0 44px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+    }
+    footer .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Subtle floating blobs */
+    .blob{
+      position:absolute;
+      inset:auto;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: .26;
+      pointer-events:none;
+      transform: translate3d(0,0,0);
+      animation: float 12s ease-in-out infinite;
+    }
+    .blob.a{ background: rgba(0,197,155,.35); left: -220px; top: 220px; animation-delay: -2s; }
+    .blob.b{ background: rgba(124,77,255,.28); right: -220px; top: 120px; animation-delay: -6s; }
+    .blob.c{ background: rgba(19,138,145,.28); right: -180px; bottom: -220px; animation-delay: -9s; }
+
+    @keyframes float{
+      0%,100%{ transform: translateY(0) translateX(0) scale(1); }
+      50%{ transform: translateY(-18px) translateX(12px) scale(1.04); }
+    }
+
+    /* Print */
+    @media print{
+      .nav, .hero-actions, .toolbar, .links, .blob{ display:none !important; }
+      body{ background: #fff; color:#111; }
+      .panel, .card, .contact-card, .stat{ box-shadow:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blob a"></div>
+  <div class="blob b"></div>
+  <div class="blob c"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-label="PMVL">PM</div>
+        <div>
+          <h1>Potentia Motus Ventures Ltd (PMVL)<span class="sub">Modern utility apps for Uganda</span></h1>
+        </div>
+      </div>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#apps">Apps</a>
+        <a href="#about">About</a>
+        <a href="#contact">Support</a>
+        <a href="https://github.com/pattkab" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#apps" title="Browse apps">Explore</a>
+        <a class="btn primary" href="mailto:motuspotentia@gmail.com?subject=PMVL%20Support%20Request" title="Email support">
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill"><span class="dot"></span> PMVL — practical, mobile-first tools built for everyday use</div>
+          <h2>Apps that make daily transactions and decisions simpler.</h2>
+          <p>
+            Potentia Motus Ventures Limited (PMVL) builds clean, modern apps focused on transparency, speed, and reliability.
+            From mobile money tools to calculators and utilities, our products are designed for real-life needs in Uganda.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#apps">View Apps</a>
+            <a class="btn" href="https://github.com/pattkab" target="_blank" rel="noreferrer">Visit GitHub</a>
+            <a class="btn" href="#contact">Support</a>
+          </div>
+
+          <div class="stats" aria-label="Highlights">
+            <div class="stat"><b>Fast</b><span>Simple interfaces that get you results quickly</span></div>
+            <div class="stat"><b>Accurate</b><span>Clear calculations and structured data</span></div>
+            <div class="stat"><b>Focused</b><span>Utility-first apps — no unnecessary clutter</span></div>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="What we focus on">
+          <div class="top">
+            <div class="title">
+              <span class="badge">PMVL Focus</span>
+              <span>What to expect</span>
+            </div>
+            <span class="badge">Updated regularly</span>
+          </div>
+          <div class="body">
+            <div class="feature">
+              <div class="icon" aria-hidden="true">⚡</div>
+              <div>
+                <h3>Speed & clarity</h3>
+                <p>Instant results with a clean layout that’s easy to understand.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="icon" aria-hidden="true">🛡️</div>
+              <div>
+                <h3>Trust by design</h3>
+                <p>Practical workflows that reduce errors and confusion.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="icon" aria-hidden="true">📱</div>
+              <div>
+                <h3>Mobile-first</h3>
+                <p>Optimized for phones: quick taps, minimal typing, readable screens.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="apps">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Apps</h2>
+            <p>Browse our products and utilities. Use the search and filters to find what you need.</p>
+          </div>
+
+          <div class="toolbar" role="group" aria-label="Filters">
+            <div class="search" aria-label="Search apps">
+              <span aria-hidden="true">🔎</span>
+              <input id="q" type="search" placeholder="Search apps (e.g., charges, wallet, tax)…" autocomplete="off" />
+            </div>
+            <div class="chips" aria-label="Category filters">
+              <div class="chip active" data-filter="all">All</div>
+              <div class="chip" data-filter="fintech">Fintech</div>
+              <div class="chip" data-filter="calculator">Calculators</div>
+              <div class="chip" data-filter="utility">Utilities</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="appGrid" aria-label="App cards">
+          <!-- Cards are rendered by JS from the data below -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>About PMVL</h2>
+            <p>Potentia Motus Ventures Limited builds practical, modern digital products for Ugandan users.</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <div class="contact-card">
+            <h3>Our approach</h3>
+            <p>
+              We focus on clean interfaces, accurate information, and workflows that are easy to complete on a phone.
+              PMVL products aim to reduce confusion and improve confidence in everyday financial and decision-making tasks.
+            </p>
+            <div class="contact-actions">
+              <a class="btn" href="#apps">Explore apps</a>
+              <a class="btn" href="https://github.com/pattkab" target="_blank" rel="noreferrer">See our GitHub</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>Support</h3>
+            <p>
+              Need help, want to report an issue, or have an idea? Reach out via email or phone.
+            </p>
+            <div class="contact-actions">
+              <a class="btn primary" href="mailto:motuspotentia@gmail.com?subject=PMVL%20Support%20Request">motuspotentia@gmail.com</a>
+              <a class="btn" href="tel:+256772844881">+256 772 844 881</a>
+            </div>
+            <p style="margin-top:10px; font-size:12px; color: var(--muted);">
+              Tip: For the fastest support, include the app name, your device model, and what you were trying to do.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Contact</h2>
+            <p>We’re happy to help with support, feedback, and partnerships.</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <div class="contact-card">
+            <h3>Support email</h3>
+            <p>For app support and questions.</p>
+            <div class="contact-actions">
+              <a class="btn primary" href="mailto:motuspotentia@gmail.com?subject=PMVL%20Support%20Request">Email Support</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3>Phone</h3>
+            <p>Call or WhatsApp.</p>
+            <div class="contact-actions">
+              <a class="btn" href="tel:+256772844881">+256 772 844 881</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> Potentia Motus Ventures Limited (PMVL)</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <a class="badge" href="#apps">Apps</a>
+        <a class="badge" href="#about">About</a>
+        <a class="badge" href="#contact">Support</a>
+        <a class="badge" href="https://github.com/pattkab" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Edit your apps here =====
+    // Tip: Fill in store/repo links when you have them.
+    const APPS = [
+      {
+        name: "MobiWallet",
+        short: "MW",
+        category: ["fintech","utility"],
+        status: "Active",
+        description: "A modern wallet-style experience for tracking and managing money workflows (payments, records, and more).",
+        highlights: ["Wallet UI", "Fast actions", "Mobile-first"],
+        repo: "https://github.com/pattkab",
+        android: "",
+        ios: "",
+      },
+      {
+        name: "Quick Pay UG",
+        short: "QP",
+        category: ["fintech"],
+        status: "Active",
+        description: "Quickly initiate common payment actions and reduce mistakes with saved merchants and simplified flows.",
+        highlights: ["Saved merchants", "One-tap actions", "QR support"],
+        repo: "https://github.com/pattkab",
+        android: "",
+        ios: "",
+      },
+      {
+        name: "Mobile Money Charges UG",
+        short: "MM",
+        category: ["calculator","fintech"],
+        status: "Active",
+        description: "Instantly calculate MTN & Airtel Mobile Money fees in Uganda with clear breakdowns.",
+        highlights: ["Accurate bands", "Fast totals", "Clear breakdown"],
+        repo: "https://github.com/pattkab",
+        android: "",
+        ios: "",
+      },
+      {
+        name: "Tax Rates UG",
+        short: "TX",
+        category: ["calculator","utility"],
+        status: "In progress",
+        description: "A simple reference and calculator to help users estimate taxes and rates quickly.",
+        highlights: ["Quick lookup", "Simple calculators", "Clean UI"],
+        repo: "https://github.com/pattkab",
+        android: "",
+        ios: "",
+      },
+      {
+        name: "SF App",
+        short: "SF",
+        category: ["utility"],
+        status: "In progress",
+        description: "A lightweight utility app under PMVL — add your description here.",
+        highlights: ["Lightweight", "Focused", "Mobile-first"],
+        repo: "https://github.com/pattkab",
+        android: "",
+        ios: "",
+      },
+    ];
+
+    // ===== Rendering & filtering =====
+    const grid = document.getElementById('appGrid');
+    const q = document.getElementById('q');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+
+    function escapeHtml(str){
+      return (str||"")
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+
+    function appMark(short){
+      const s = escapeHtml(short || "PM");
+      return `<div class="appmark" aria-hidden="true">${s}</div>`;
+    }
+
+    function link(label, href){
+      if(!href) return '';
+      const safe = escapeHtml(href);
+      return `<a class="linkbtn" href="${safe}" target="_blank" rel="noreferrer">${label} ↗</a>`;
+    }
+
+    function render(apps){
+      grid.innerHTML = apps.map(app => {
+        const cats = (app.category || []).map(c => `<span class="tag">${escapeHtml(c)}</span>`).join('');
+        const hl = (app.highlights || []).slice(0,3).map(h => `<span class="tag">${escapeHtml(h)}</span>`).join('');
+        const status = app.status ? `<span class="tag">${escapeHtml(app.status)}</span>` : '';
+
+        const repoBtn = link('GitHub', app.repo);
+        const androidBtn = link('Android', app.android);
+        const iosBtn = link('iOS', app.ios);
+
+        return `
+          <article class="card" data-cats="${(app.category||[]).join(' ')}" aria-label="${escapeHtml(app.name)}">
+            <div class="row">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                ${appMark(app.short)}
+                <div>
+                  <h3>${escapeHtml(app.name)}</h3>
+                  <div class="meta">${status}${cats}</div>
+                </div>
+              </div>
+              <span class="badge" title="PMVL">PMVL</span>
+            </div>
+
+            <p>${escapeHtml(app.description)}</p>
+
+            <div class="meta" aria-label="Highlights">${hl}</div>
+
+            <div class="links" aria-label="Links">
+              ${repoBtn}
+              ${androidBtn}
+              ${iosBtn}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    let activeFilter = 'all';
+
+    function apply(){
+      const term = (q.value || '').trim().toLowerCase();
+      const filtered = APPS.filter(app => {
+        const matchesFilter = activeFilter === 'all' || (app.category || []).includes(activeFilter);
+        if(!matchesFilter) return false;
+
+        if(!term) return true;
+        const hay = [app.name, app.description, ...(app.highlights||[]), ...(app.category||[]), app.status].join(' ').toLowerCase();
+        return hay.includes(term);
+      });
+      render(filtered);
+    }
+
+    chips.forEach(ch => {
+      ch.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        ch.classList.add('active');
+        activeFilter = ch.getAttribute('data-filter');
+        apply();
+      });
+    });
+
+    q.addEventListener('input', apply);
+
+    // Initial render
+    document.getElementById('year').textContent = new Date().getFullYear();
+    render(APPS);
+  </script>
+</body>
+</html>
